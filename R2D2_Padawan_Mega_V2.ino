@@ -474,29 +474,25 @@ void loop()
   }
 
   // start gripper animation when pressing right and L2
-  if (Xbox.getButtonPress(RIGHT, 0))
+  if (Xbox.getButtonPress(RIGHT, 0) && (Xbox.getButtonPress(L2, 0)))
   {
-
-    if (Xbox.getButtonPress(L2, 0))
-    {
-
-      GripperAni1a = 1000;
-
-      pwm1.setPWM(1, 0, RightDoorOpen);
-    }
+    GripperAni1a = 1000;
+    pwm1.setPWM(1, 0, RightDoorOpen);
+    pwm1.setPWM(2, 0, RightDoorOpen);
+    pwm1.setPWM(3, 0, RightDoorOpen);
+  }
+  else if (Xbox.getButtonPress(RIGHT, 0) && !(Xbox.getButtonPress(L2, 0)))
+  {
+    pwm1.setPWM(1, 0, RightDoorClose);
+    pwm1.setPWM(2, 0, RightDoorClose);
+    pwm1.setPWM(3, 0, RightDoorClose);
   }
 
   // start Interface Arm animation when pressing left and L2
-  if (Xbox.getButtonPress(LEFT, 0))
+  if (Xbox.getButtonPress(LEFT, 0) && (Xbox.getButtonPress(L2, 0)))
   {
-
-    if (Xbox.getButtonPress(L2, 0))
-    {
-
-      InterAni1a = 1000;
-
-      // pwm1.setPWM(0,0,LeftDoorOpen);
-    }
+    InterAni1a = 1000;
+    pwm1.setPWM(0, 0, LeftDoorOpen);
   }
 
   // start movement Dataport to open when pressing RIGHT + R2 and close when pressing RIGHT and L1
@@ -504,7 +500,6 @@ void loop()
   {
     pwm1.setPWM(8, 0, dataportDoorOpen);
   }
-
   // start movement Dataport to open when pressing LEFT + R2 and close when pressing RIGHT and L1
   else if (Xbox.getButtonPress(R2, 0) && (Xbox.getButtonPress(RIGHT, 0)))
   {
@@ -516,6 +511,15 @@ void loop()
   {
     HoloPWMstart = 0;
     HoloAni1a = 1000;
+    pwm1.setPWM(0, 0, chargebayDoorOpen);
+    pwm1.setPWM(0, 6, chargebayDoorOpen);
+    pwm1.setPWM(0, 7, chargebayDoorOpen);
+  }
+  else if (Xbox.getButtonPress(LEFT, 0) && !(Xbox.getButtonPress(L2, 0)))
+  {
+    pwm1.setPWM(0, 0, chargebayDoorClose);
+    pwm1.setPWM(0, 6, chargebayDoorClose);
+    pwm1.setPWM(0, 7, chargebayDoorClose);
   }
 
   // HoloProjector animation
