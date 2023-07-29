@@ -481,7 +481,7 @@ void loop()
     pwm1.setPWM(2, 0, RightDoorOpen);
     pwm1.setPWM(3, 0, RightDoorOpen);
   }
-  else if (Xbox.getButtonPress(RIGHT, 0) && !(Xbox.getButtonPress(L2, 0)))
+  else if (! Xbox.getButtonPress(RIGHT, 0) && (Xbox.getButtonPress(L2, 0)))
   {
     pwm1.setPWM(1, 0, RightDoorClose);
     pwm1.setPWM(2, 0, RightDoorClose);
@@ -515,7 +515,7 @@ void loop()
     pwm1.setPWM(0, 6, chargebayDoorOpen);
     pwm1.setPWM(0, 7, chargebayDoorOpen);
   }
-  else if (Xbox.getButtonPress(LEFT, 0) && !(Xbox.getButtonPress(L2, 0)))
+  else if (!Xbox.getButtonPress(LEFT, 0) && (Xbox.getButtonPress(L2, 0)))
   {
     pwm1.setPWM(0, 0, chargebayDoorClose);
     pwm1.setPWM(0, 6, chargebayDoorClose);
